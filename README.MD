@@ -182,3 +182,19 @@ The overlap helps preserve context between consecutive chunks while improving re
 | ChatGPT | Project planning, debugging, implementation guidance, README preparation |
 
 Approximately 15-20 prompts were used during development.
+
+
+## Screenshots
+
+### FastAPI Swagger
+
+![Swagger](Screenshots/FastAPI_Swagger.png)
+
+
+### Question Answering
+
+![Answer](Screenshots/fastapi_answer.png)
+
+### Unknown Question Handling
+
+![Unknown](Screenshots/unknown_question.png)
