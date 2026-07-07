@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from app.pdf_reader import read_all_pdfs
 from app.chunker import chunk_documents
+from app.vector_store import create_vector_store
 
 app = FastAPI()
 
@@ -32,4 +33,17 @@ def chunks():
     return {
         "total_chunks": len(chunks),
         "sample_chunk": chunks[0]
+    }
+
+@app.get("/vector-store")
+def vector_store():
+
+    docs = read_all_pdfs("documents")
+
+    chunks = chunk_documents(docs)
+
+    index, texts = create_vector_store(chunks)
+
+    return {
+        "vectors_created": index.ntotal
     }
