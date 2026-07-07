@@ -14,4 +14,17 @@ def create_vector_store(chunks):
 
     index.add(embeddings)
 
-    return index, texts
+    return index, chunks
+
+def search(index, chunks, question, top_k=3):
+
+    question_embedding = model.encode([question])
+
+    distances, indices = index.search(question_embedding, top_k)
+
+    results = []
+
+    for i in indices[0]:
+        results.append(chunks[i])
+
+    return results

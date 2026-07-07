@@ -8,17 +8,20 @@ def chunk_documents(documents):
         chunk_overlap=100
     )
 
-    all_chunks = []
+    chunks = []
 
-    for filename, text in documents.items():
+    for document_name, pages in documents.items():
 
-        chunks = splitter.split_text(text)
+        for page in pages:
 
-        for chunk in chunks:
+            split_chunks = splitter.split_text(page["text"])
 
-            all_chunks.append({
-                "document": filename,
-                "text": chunk
-            })
+            for chunk in split_chunks:
 
-    return all_chunks
+                chunks.append({
+                    "document": document_name,
+                    "page": page["page"],
+                    "text": chunk
+                })
+
+    return chunks
